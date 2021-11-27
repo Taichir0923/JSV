@@ -18,4 +18,3 @@ mongoose.connect(process.env.MONGO_URI)
         console.log('serevt started at port 3001')
     })
 })
-
