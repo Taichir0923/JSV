@@ -8,7 +8,9 @@ function App() {
   const [taskName , setTaskName] = React.useState('');
   const dispatch = useDispatch();
   const [updateTodo , setUpdateTodo] = React.useState(null);
-  const [updateMode , setUpdateMode] = React.useState(false)
+  const [updateMode , setUpdateMode] = React.useState(false);
+
+  const [file , setFile] = React.useState(null)
 
   const todos = useSelector(state => state.todoReducer);
   const userRducer = useSelector(state => state.userReducer);
@@ -55,6 +57,14 @@ function App() {
     <div className="w-full bg-gray-100 flex flex-col justify-center items-center h-screen">
       <div className='p-4 bg-white mb-4 flex flex-col rounded-xl'>
         <input value={taskName} onChange={e => setTaskName(e.target.value)} className='bg-gray-100 rounded-md py-3 px-4 mb-4' placeholder='task name' />
+        <input onChange={e => {
+          setFile(e.target.files[0]);
+        }} type='file' />
+
+        {
+          file && <img src={URL.createObjectURL(file)} />
+        }
+
         <button onClick={updateMode ? updateTask : insertTask} className='bg-indigo-400 py-3 rounded-md px-4  text-white'>{
           updateMode ? "update" : 'insert'
         }</button>
@@ -81,11 +91,26 @@ function App() {
             <ImSpinner6 />
           </div>
         }
+
+        {
+          error && <p>{error}</p>
+        }
       </div>
     </div>
   );
 }
-
 export default App;
 
-// 
+
+// Medium shig site hiih - hugatsaa 14 honog
+
+// 1. Front hesgiig oilgomjtoi , zagvar design bolomjiin bhaar shiideh
+// 2. Hereglegch nevtreh
+//    2.1. jwt - jsonwebtoken ashiglan nevtreh ba nevtersen bol token-g localStorage dr hadgalah
+// 3. Article collection uusgehdee ref dr n user collection holboh
+// 4. Article comment bochdeg bh
+
+// Article.method.funxtion = function(){}
+
+
+// react native

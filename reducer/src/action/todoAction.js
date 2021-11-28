@@ -27,15 +27,15 @@ export const getUsers = () => async dispatch => {
         dispatch({
             type: "GET_USERS_REQ"
         })
-        const {data} = await axios.get('https://jsonplaceholder.typicode.com/users');
+        const {data} = await axios.get('https://jsonplaceholder.typicode.com/usershfdljhls');
         dispatch({
             type: "GET_USERS_RES",
             payload: data
         })
-    } catch (error){
-        dispatch( {
+    } catch (error) {
+        dispatch({
             type: "GET_USERS_ERROR",
             message: error.message
-        } )
+        })
     }
 }

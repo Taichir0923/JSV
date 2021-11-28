@@ -30,7 +30,7 @@ export const getUsers = (state = [], action) => {
                 loading: false,
                 users: action.payload
             }
-        case "USER_USERS_ERROR": 
+        case "GET_USERS_ERROR": 
             return {
                 error: action.message
             }
