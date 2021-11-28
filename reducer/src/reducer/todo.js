@@ -21,8 +21,19 @@ export const newTodo = (state = [], action) => {
 
 export const getUsers = (state = [], action) => {
     switch(action.type){
-        case "GET_USERS": 
-            return action.payload;
+        case "GET_USERS_REQ": 
+            return {
+                loading: true
+            };
+        case "GET_USERS_RES": 
+            return {
+                loading: false,
+                users: action.payload
+            }
+        case "USER_USERS_ERROR": 
+            return {
+                error: action.message
+            }
         default: return state
     }
 }

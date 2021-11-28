@@ -22,10 +22,20 @@ export const deleteTodo = id => {
     }
 }
 
-export const getUsers = async () => {
-    const {data} = await axios.get('https://jsonplaceholder.typicode.com/users');
-    return {
-        type: "GET_USERS",
-        payload: data
+export const getUsers = () => async dispatch => {
+    try {
+        dispatch({
+            type: "GET_USERS_REQ"
+        })
+        const {data} = await axios.get('https://jsonplaceholder.typicode.com/users');
+        dispatch({
+            type: "GET_USERS_RES",
+            payload: data
+        })
+    } catch (error){
+        dispatch( {
+            type: "GET_USERS_ERROR",
+            message: error.message
+        } )
     }
 }

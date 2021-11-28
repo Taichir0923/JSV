@@ -2,6 +2,8 @@ import React from 'react';
 import {useSelector , useDispatch} from 'react-redux';
 import { newTodo , updateTodos , deleteTodo , getUsers } from './action/todoAction';
 
+import {ImSpinner6} from 'react-icons/im'
+
 function App() {
   const [taskName , setTaskName] = React.useState('');
   const dispatch = useDispatch();
@@ -9,7 +11,9 @@ function App() {
   const [updateMode , setUpdateMode] = React.useState(false)
 
   const todos = useSelector(state => state.todoReducer);
-  const users = useSelector(state => state.userReducer);
+  const userRducer = useSelector(state => state.userReducer);
+
+  const {loading , users , error} = userRducer;
 
   const insertTask = () => {
     const todoObject = {
@@ -67,9 +71,15 @@ function App() {
           )) : <p onClick={getData}>Хэрэглэгчийн дата татах.</p>
         }
         {
-          users.length !== 0 ? users.map((user , index) => (
+          users && users.length !== 0 ? users.map((user , index) => (
             <p key={`user-${index}`}>{user.name}</p>
           )) : <p>hereglegch bhgui bna</p>
+        }
+
+        {
+          loading && <div className='w-8 animate-spin h-8 flex justify-center items-center'>
+            <ImSpinner6 />
+          </div>
         }
       </div>
     </div>
@@ -77,3 +87,5 @@ function App() {
 }
 
 export default App;
+
+// 
