@@ -21,3 +21,7 @@ ReactDOM.render(
 // dispatch - useDispatch
 
 // selector - useSelector
+
+// CRUD - Create , Read , Update , Delete
+// async function
+// thunk
