@@ -1,12 +1,20 @@
-import { combineReducers , createStore } from 'redux';
+import { combineReducers , createStore , applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import {composeWithDevTools} from 'redux-devtools-extension';
 
-import { newTodo } from './reducer/todo';
+import { newTodo , getUsers } from './reducer/todo';
 
 const reducers = combineReducers({
-    todoReducer: newTodo
+    todoReducer: newTodo,
+    userReducer: getUsers
 });
 
-const store = createStore(reducers)
+const middleware = [thunk];
+
+const store = createStore(
+    reducers,
+    composeWithDevTools(applyMiddleware(...middleware))
+)
 
 export default store;
 // ToDo List

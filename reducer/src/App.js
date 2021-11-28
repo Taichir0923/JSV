@@ -1,13 +1,16 @@
 import React from 'react';
 import {useSelector , useDispatch} from 'react-redux';
-import { newTodo , updateTodos , deleteTodo } from './action/todoAction';
+import { newTodo , updateTodos , deleteTodo , getUsers } from './action/todoAction';
 
 function App() {
   const [taskName , setTaskName] = React.useState('');
   const dispatch = useDispatch();
   const [updateTodo , setUpdateTodo] = React.useState(null);
-  const todos = useSelector(state => state.todoReducer);
   const [updateMode , setUpdateMode] = React.useState(false)
+
+  const todos = useSelector(state => state.todoReducer);
+  const users = useSelector(state => state.userReducer);
+
   const insertTask = () => {
     const todoObject = {
       taskName: taskName,
@@ -40,6 +43,10 @@ function App() {
     dispatch(deleteTodo(id))
   }
 
+  const getData = () => {
+    dispatch(getUsers());
+  }
+
   return (
     <div className="w-full bg-gray-100 flex flex-col justify-center items-center h-screen">
       <div className='p-4 bg-white mb-4 flex flex-col rounded-xl'>
@@ -57,7 +64,12 @@ function App() {
               <p onClick={() => todoUstgah(todo.id)}>ustgah</p>
             </div>
             </li>
-          )) : <p>Ажил оруулаагүй байна.</p>
+          )) : <p onClick={getData}>Хэрэглэгчийн дата татах.</p>
+        }
+        {
+          users.length !== 0 ? users.map((user , index) => (
+            <p key={`user-${index}`}>{user.name}</p>
+          )) : <p>hereglegch bhgui bna</p>
         }
       </div>
     </div>

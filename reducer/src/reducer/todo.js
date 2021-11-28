@@ -18,3 +18,11 @@ export const newTodo = (state = [], action) => {
         default: return state
     }
 }
+
+export const getUsers = (state = [], action) => {
+    switch(action.type){
+        case "GET_USERS": 
+            return action.payload;
+        default: return state
+    }
+}
